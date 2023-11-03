@@ -1,0 +1,19 @@
+# api-deployment.yaml
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: api-deployment
+spec:
+  replicas: 1
+  selector:
+    app: api-app
+  template:
+    metadata:
+      labels:
+        app: api-app
+    spec:
+      containers:
+        - name: api-app-container
+          image: dnajih/najicloud:api-app-image
+          ports:
+            - containerPort: 8081
